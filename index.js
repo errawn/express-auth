@@ -7,6 +7,8 @@ const morgan = require('morgan')
 const app = express()
 
 // App Setup
+app.use(morgan('combined')) // used for logging
+app.use(bodyParser.json({ type: '*/*' })) // parse incoming request. parse as json(as defined)
 
 
 // Server Setup
