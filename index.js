@@ -6,7 +6,11 @@ const morgan = require('morgan')
 
 const router = require('./router')
 
+// Initialize App with express
 const app = express()
+
+// DB Setup
+const db = require('./models')
 
 // App Setup
 app.use(morgan('combined')) // used for logging
@@ -17,8 +21,12 @@ router(app)
 const port = process.env.PORT || 3090
 const server = http.createServer(app)
 
-server.listen(port)
-console.log(`Server running at ${port}`)
 
 
+// Connect App to db
+// db.sequelize.sync()
+// 	.then(() => {
+		server.listen(port)
+		console.log(`Server running at ${port}`)
+	// })
 

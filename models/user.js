@@ -1,15 +1,34 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+'use strict'
 
-// Define model
-const userSchema = new Schema({
-	email: { type: String, unique: true, lowercase: true },
-	password: String
-})
+module.exports = (sequelize, DataTypes) => {
 
+  var User = sequelize.define('User', {
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    middlename: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    }
+  }, {})
 
-// Create model class
-const ModelClass = mongoose.model('user', userSchema)
+  User.associate = function(models) {
+    // associations can be defined here
+  }
 
-// Export model
-module.exports = ModelClass
+  return User
+}
